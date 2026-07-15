@@ -14,7 +14,9 @@ def main():
     network_tools.printPacketDetailsInline(output_packet_details)
     network_tools.printFullPacketDetails(output_packet_details)
     
-    connection = storage.db_init()
+    storage.db_init()
+
+    storage.insertPacketDetails(output_packet_details)
 
 
 if __name__ ==  "__main__":

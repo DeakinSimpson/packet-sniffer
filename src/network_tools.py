@@ -16,7 +16,7 @@ def analysePacket(pkt: packet, output_packet_details):
         "dport": pkt[TCP].dport if pkt.haslayer(TCP) else None,
         "size": len(pkt),
         # if packet is DNS packet
-        "dns-query": pkt[DNS].qd.qname.decode() if pkt.haslayer(DNS) and packet[DNS].qd else None,
+        "dns_query": pkt[DNS].qd.qname.decode() if pkt.haslayer(DNS) and packet[DNS].qd else None,
         # append the raw data (could be used later)
         "raw": raw(pkt),
     })
@@ -24,7 +24,7 @@ def analysePacket(pkt: packet, output_packet_details):
 # this will print the details of each packet
 def printPacketDetailsInline(packets):
     for pkt in packets:
-        print(f'Time: {datetime.fromtimestamp(pkt['time'])}, src IP: {pkt['src']}, dst IP: {pkt['dst']}, Protocol: {pkt['proto']}, ttl: {pkt['ttl']}, sport: {pkt['sport']}, dport: {pkt['dport']}, size: {pkt['size']}, dns-query: {pkt['dns-query']}')
+        print(f'Time: {datetime.fromtimestamp(pkt['time'])}, src IP: {pkt['src']}, dst IP: {pkt['dst']}, Protocol: {pkt['proto']}, ttl: {pkt['ttl']}, sport: {pkt['sport']}, dport: {pkt['dport']}, size: {pkt['size']}, dns_query: {pkt['dns_query']}')
 
 # prints the full packet details of each packer
 def printFullPacketDetails(packets, print_raw=False):
@@ -40,7 +40,7 @@ def printFullPacketDetails(packets, print_raw=False):
         print(f'sport: {pkt['sport']}')
         print(f'dport: {pkt['dport']}')
         print(f'size: {pkt['size']}')
-        print(f'dns-query: {pkt['dns-query']}')
+        print(f'dns_query: {pkt['dns_query']}')
         if print_raw: print(f'raw: {pkt['raw']}')
         print(f'------------------------------------------------\n')
 
