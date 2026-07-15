@@ -63,3 +63,22 @@ def insertPacketDetails(packets):
         if sqliteConnection:
             sqliteConnection.close()
             print('SQLite Connection Closed')
+
+def resetDatabase():
+    try:
+        # connect to db
+        sqliteConnection = sqlite3.connect('data/packets.db')
+        curser = sqliteConnection.cursor()
+
+        curser.execute("DROP TABLE IF EXISTS packets")
+
+        sqliteConnection.commit()
+    
+    except sqlite3.Error as error:
+        print('Error occured -', error)
+    finally:
+        if sqliteConnection:
+            sqliteConnection.close()
+            print('SQLite Connection Closed')
+
+    db_init()

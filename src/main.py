@@ -9,14 +9,16 @@ import storage
 def main():
     output_packet_details = []
 
-    sniff(count= 3, prn=lambda p:network_tools.analysePacket(p, output_packet_details))
+    sniff(count= 100, prn=lambda p:network_tools.analysePacket(p, output_packet_details))
 
-    network_tools.printPacketDetailsInline(output_packet_details)
-    network_tools.printFullPacketDetails(output_packet_details)
+    # network_tools.printPacketDetailsInline(output_packet_details)
+    # network_tools.printFullPacketDetails(output_packet_details)
     
     storage.db_init()
 
     storage.insertPacketDetails(output_packet_details)
+
+    # storage.resetDatabase()
 
 
 if __name__ ==  "__main__":
