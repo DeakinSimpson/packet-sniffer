@@ -3,6 +3,7 @@
 import sys
 from scapy.all import *
 import network_tools
+import storage
 
 
 def main():
@@ -13,6 +14,8 @@ def main():
     network_tools.printPacketDetailsInline(output_packet_details)
     network_tools.printFullPacketDetails(output_packet_details)
     
+    connection = storage.db_init()
+
 
 if __name__ ==  "__main__":
     main()
