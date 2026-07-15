@@ -27,12 +27,33 @@ def printPacketDetailsInline(packets):
     for pkt in packets:
         print(f'Time: {datetime.fromtimestamp(pkt['time'])}, src IP: {pkt['src']}, dst IP: {pkt['dst']}, Protocol: {pkt['proto']}, ttl: {pkt['ttl']}, sport: {pkt['sport']}, dport: {pkt['dport']}, size: {pkt['size']}, dns-query: {pkt['dns-query']}')
 
+# prints the full packet details of each packer
+def printFullPacketDetails(packets, print_raw=False):
+    i = 0
+
+    for pkt in packets:
+        print(f'--------------------packet {i}--------------------')
+        print(f'Time: {datetime.fromtimestamp(pkt['time'])}')
+        print(f'src IP: {pkt['src']}')
+        print(f'dst IP: {pkt['dst']}')
+        print(f'Protocol: {pkt['proto']}')
+        print(f'ttl: {pkt['ttl']}')
+        print(f'sport: {pkt['sport']}')
+        print(f'dport: {pkt['dport']}')
+        print(f'size: {pkt['size']}')
+        print(f'dns-query: {pkt['dns-query']}')
+        if print_raw: print(f'raw: {pkt['raw']}')
+        print(f'------------------------------------------------\n')
+
+        i += 1
+
 def main():
     output_packet_details = []
 
-    sniff(count= 10, prn=lambda p:analysePacket(p, output_packet_details))
+    sniff(count= 3, prn=lambda p:analysePacket(p, output_packet_details))
 
     printPacketDetailsInline(output_packet_details)
+    printFullPacketDetails(output_packet_details)
     
 
 if __name__ ==  "__main__":
