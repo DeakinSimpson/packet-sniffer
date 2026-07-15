@@ -11,7 +11,6 @@ def db_init():
     try:
         # initialise db connection
         sqliteConnection = sqlite3.connect('data/packets.db')
-        print('db init')
 
         # inialise curser
         curser = sqliteConnection.cursor()
@@ -39,7 +38,6 @@ def db_init():
     finally:
         if sqliteConnection:
             sqliteConnection.close()
-            print('SQLite Connection Closed')
 
 
 def insertPacketDetails(packets):
@@ -62,7 +60,6 @@ def insertPacketDetails(packets):
     finally:
         if sqliteConnection:
             sqliteConnection.close()
-            print('SQLite Connection Closed')
 
 def resetDatabase():
     try:
@@ -79,6 +76,5 @@ def resetDatabase():
     finally:
         if sqliteConnection:
             sqliteConnection.close()
-            print('SQLite Connection Closed')
 
     db_init()
